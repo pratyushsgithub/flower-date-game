@@ -72,12 +72,13 @@
     .no {
       background: none;
       border: none;
-      color: #777;
-      font-size: 0.95rem;
+      color: #666;
+      font-size: 1.05rem;
       cursor: not-allowed;
       position: absolute;
       bottom: 0;
-      transition: all 0.25s ease;
+      padding: 6px 10px;
+      transition: transform 0.25s ease;
     }
 
     .hint {
@@ -119,14 +120,14 @@
 <body>
 
   <div class="card" id="card">
-    <div class="avatar">🐱</div>
-    <h1>Nidhi, will you be my Valentine?</h1>
+    <div class="avatar">🐱💗</div>
+    <h1>nidhi will you be my valentine?</h1>
 
     <div class="choices">
       <button class="yes" id="yesBtn">Yes</button>
       <button class="no" id="noBtn">No</button>
     </div>
-    <div class="hint">"No" seems a bit shy 😌</div>
+    <div class="hint">“No” seems a bit shy 😈</div>
   </div>
 
   <script>
@@ -134,16 +135,19 @@
     const noBtn = document.getElementById('noBtn');
     const card = document.getElementById('card');
 
-    noBtn.addEventListener('mouseover', () => {
-      const x = Math.random() * 140 - 70;
-      const y = Math.random() * 60 - 30;
+    function moveNo() {
+      const x = Math.random() * 160 - 80;
+      const y = Math.random() * 80 - 40;
 
-      noBtn.style.transform = `translate(${x}px, ${y}px) scale(0.7)`;
+      noBtn.style.transform = `translate(${x}px, ${y}px) scale(0.75)`;
 
       yesBtn.style.transform = 'scale(1.25)';
       yesBtn.style.background = '#ff2f78';
       yesBtn.style.boxShadow = '0 12px 28px rgba(255, 79, 139, 0.6)';
-    });
+    }
+
+    noBtn.addEventListener('mouseover', moveNo);
+    noBtn.addEventListener('touchstart', moveNo);
 
     yesBtn.addEventListener('click', () => {
       document.body.classList.add('celebrate');
