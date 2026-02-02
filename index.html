@@ -90,6 +90,19 @@
       background: radial-gradient(circle at top, #ff9a9e, #fad0c4, #fad0c4);
     }
 
+    .final-line {
+      margin-top: 12px;
+      font-size: 1.15rem;
+      color: #7a003c;
+      opacity: 0;
+      animation: fadeIn 1.5s ease forwards;
+      animation-delay: 0.8s;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
     .confetti {
       position: fixed;
       top: -10px;
@@ -167,7 +180,11 @@
 
     yesBtn.addEventListener('click', () => {
       document.body.classList.add('celebrate');
-      final.innerHTML = '<h1>Yay 💖</h1><p>It’s a date, Nidhi 🌷</p><p style="margin-top:10px; font-size:1.1rem; color:#7a003c;">Feb 14 — just you and me.</p>';
+      final.innerHTML = `
+        <h1>Yay 💖</h1>
+        <p>It’s a date, Nidhi 🌷</p>
+        <p class="final-line">Feb 14 — just you and me.</p>
+      `;
       launchConfetti();
     });
 
