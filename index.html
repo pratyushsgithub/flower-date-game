@@ -7,68 +7,95 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Poppins', 'Comic Sans MS', cursive;
-      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #fbd3e9, #fceef5);
       overflow: hidden;
-      text-align: center;
       transition: background 1s ease;
     }
 
-    h1 {
-      margin-top: 60px;
-      color: #b30059;
+    .card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 48px 36px 44px;
+      width: min(90vw, 420px);
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+      position: relative;
     }
 
-    p {
-      color: #5a0033;
-      font-size: 1.2rem;
+    .avatar {
+      width: 88px;
+      height: 88px;
+      margin: 0 auto 24px;
+      border-radius: 50%;
+      background: #ffd1dc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      box-shadow: 0 10px 25px rgba(255, 105, 180, 0.35);
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      margin: 0 0 28px;
+      color: #222;
+      font-weight: 600;
     }
 
     .choices {
-      margin-top: 60px;
+      margin-top: 12px;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      gap: 40px;
+      gap: 16px;
       position: relative;
-      height: 160px;
+      height: 120px;
     }
 
     .yes {
-      padding: 22px 48px;
-      font-size: 1.6rem;
-      border-radius: 60px;
+      padding: 14px 36px;
+      font-size: 1.05rem;
+      border-radius: 999px;
       border: none;
-      background: hotpink;
-      color: white;
+      background: #ff4f8b;
+      color: #fff;
       cursor: pointer;
-      transform: scale(1);
-      transition: transform 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
-      box-shadow: 0 8px 20px rgba(255, 20, 147, 0.4);
+      transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+      box-shadow: 0 8px 18px rgba(255, 79, 139, 0.45);
     }
 
     .no {
-      padding: 12px 24px;
-      font-size: 1rem;
-      border-radius: 30px;
+      background: none;
       border: none;
-      background: #aaa;
-      color: white;
+      color: #777;
+      font-size: 0.95rem;
       cursor: not-allowed;
       position: absolute;
+      bottom: 0;
       transition: all 0.25s ease;
     }
 
-    .celebrate {
+    .hint {
+      margin-top: 8px;
+      font-size: 0.85rem;
+      color: #aaa;
+    }
+
+    body.celebrate {
       background: radial-gradient(circle at top, #ff9a9e, #fad0c4, #fad0c4);
     }
 
     .final-line {
       margin-top: 14px;
-      font-size: 1.15rem;
+      font-size: 1rem;
       color: #7a003c;
       opacity: 0;
-      animation: fadeIn 1.5s ease forwards;
+      animation: fadeIn 1.4s ease forwards;
       animation-delay: 0.6s;
     }
 
@@ -79,7 +106,7 @@
     .confetti {
       position: fixed;
       top: -10px;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       animation: fall 3s linear infinite;
       pointer-events: none;
     }
@@ -91,38 +118,40 @@
 </head>
 <body>
 
-  <h1>Hey Nidhi 🌷</h1>
-  <h1>Will you be my Valentine?</h1>
-  <p>(Choose wisely 😌)</p>
+  <div class="card" id="card">
+    <div class="avatar">🐱</div>
+    <h1>Nidhi, will you be my Valentine?</h1>
 
-  <div class="choices">
-    <button class="yes" id="yesBtn">YES 💕</button>
-    <button class="no" id="noBtn">No 🙃</button>
+    <div class="choices">
+      <button class="yes" id="yesBtn">Yes</button>
+      <button class="no" id="noBtn">No</button>
+    </div>
+    <div class="hint">"No" seems a bit shy 😌</div>
   </div>
 
   <script>
     const yesBtn = document.getElementById('yesBtn');
     const noBtn = document.getElementById('noBtn');
+    const card = document.getElementById('card');
 
     noBtn.addEventListener('mouseover', () => {
-      const x = Math.random() * (window.innerWidth - 120);
-      const y = Math.random() * (window.innerHeight - 120);
+      const x = Math.random() * 140 - 70;
+      const y = Math.random() * 60 - 30;
 
-      noBtn.style.left = x + 'px';
-      noBtn.style.top = y + 'px';
-      noBtn.style.transform = 'scale(0.6)';
+      noBtn.style.transform = `translate(${x}px, ${y}px) scale(0.7)`;
 
-      yesBtn.style.transform = 'scale(1.35)';
-      yesBtn.style.background = '#ff1493';
-      yesBtn.style.boxShadow = '0 12px 28px rgba(255, 20, 147, 0.6)';
+      yesBtn.style.transform = 'scale(1.25)';
+      yesBtn.style.background = '#ff2f78';
+      yesBtn.style.boxShadow = '0 12px 28px rgba(255, 79, 139, 0.6)';
     });
 
     yesBtn.addEventListener('click', () => {
       document.body.classList.add('celebrate');
 
-      document.body.innerHTML = `
-        <h1 style="margin-top:80px;">Yay 💖</h1>
-        <p style="font-size:1.4rem;">It’s a date, Nidhi 🌷</p>
+      card.innerHTML = `
+        <div class="avatar">💖</div>
+        <h1>Yay</h1>
+        <p style="font-size:1.15rem; color:#444;">It’s a date, Nidhi 🌷</p>
         <p class="final-line">Feb 14 — just you and me.</p>
       `;
 
@@ -130,7 +159,7 @@
     });
 
     function launchConfetti() {
-      for (let i = 0; i < 36; i++) {
+      for (let i = 0; i < 32; i++) {
         const confetti = document.createElement('div');
         confetti.className = 'confetti';
         confetti.innerText = ['💖','🎉','🌸','💘'][Math.floor(Math.random()*4)];
