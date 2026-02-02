@@ -29,6 +29,7 @@
       width: 100vw;
       height: 60vh;
       margin-top: 20px;
+      pointer-events: none;
     }
 
     .flower {
@@ -52,14 +53,18 @@
     #final {
       display: none;
       margin-top: 30px;
+      position: relative;
+      z-index: 10;
     }
 
     .choices {
       margin-top: 30px;
       display: flex;
       justify-content: center;
+      align-items: center;
       gap: 40px;
       position: relative;
+      height: 120px;
     }
 
     .yes {
@@ -82,7 +87,7 @@
       background: #aaa;
       color: white;
       cursor: not-allowed;
-      position: absolute;
+      position: relative;
       transition: all 0.3s ease;
     }
 
@@ -156,6 +161,7 @@
         collected++;
         counter.innerText = `Flowers collected: ${collected} / ${totalFlowers}`;
         if (collected === totalFlowers) {
+          garden.style.display = 'none';
           final.style.display = 'block';
         }
       };
